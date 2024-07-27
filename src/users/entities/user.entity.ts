@@ -17,6 +17,9 @@ export class User {
   @Column()
   lastName: string;
 
+  @Column({ nullable: true })
+  userPic: string;
+
   @Column({ default: 0 })
   score: number;
 }

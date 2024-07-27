@@ -4,4 +4,5 @@ export class CreateUserDto {
   firstName: string;
   lastName: string;
   score: number;
+  userPic: string;
 }
