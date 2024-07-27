@@ -10,6 +10,7 @@ import {
 import { UsersService } from './users.service';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
+import { getUserProfilePhoto } from '../helpers/telegram';
 
 @Controller('users')
 export class UsersController {
@@ -18,7 +19,11 @@ export class UsersController {
   @Post()
   async create(@Body() createUserDto: CreateUserDto) {
     try {
-      const data = await this.usersService.create(createUserDto);
+      const userPic = await getUserProfilePhoto(createUserDto.telegramId);
+      const data = await this.usersService.create({
+        ...createUserDto,
+        userPic,
+      });
       return { success: true, error: null, data };
     } catch (error) {
       return { success: false, error: error.message, data: null };

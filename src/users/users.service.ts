@@ -29,6 +29,6 @@ export class UsersService {
   }
 
   remove(telegramId: number) {
-    return this.usersRepository.delete(telegramId);
+    return this.usersRepository.delete({ telegramId });
   }
 }
