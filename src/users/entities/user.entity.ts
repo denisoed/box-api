@@ -13,4 +13,7 @@ export class User {
 
   @Column()
   lastName: string;
+
+  @Column({ default: 0 })
+  score: number;
 }
