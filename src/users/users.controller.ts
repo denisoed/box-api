@@ -16,9 +16,9 @@ export class UsersController {
   constructor(private readonly usersService: UsersService) {}
 
   @Post()
-  create(@Body() createUserDto: CreateUserDto) {
+  async create(@Body() createUserDto: CreateUserDto) {
     try {
-      const data = this.usersService.create(createUserDto);
+      const data = await this.usersService.create(createUserDto);
       return { success: true, error: null, data };
     } catch (error) {
       return { success: false, error: error.message, data: null };
@@ -26,13 +26,26 @@ export class UsersController {
   }
 
   @Get()
-  findAll() {
-    return this.usersService.findAll();
+  async findAll() {
+    const data = await this.usersService.findAll();
+    return { success: true, error: null, data };
   }
 
   @Get(':telegramId')
-  findOne(@Param('telegramId') telegramId: string) {
-    return this.usersService.findOne(+telegramId);
+  async findOne(@Param('telegramId') telegramId: string) {
+    try {
+      const data = await this.usersService.findOne(+telegramId);
+      if (!data) {
+        return {
+          success: false,
+          error: 'User not found',
+          data: null,
+        };
+      }
+      return { success: true, error: null, data };
+    } catch (error) {
+      return { success: false, error: error.message, data: null };
+    }
   }
 
   @Patch(':telegramId')
