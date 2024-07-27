@@ -20,15 +20,15 @@ export class UsersService {
     return this.usersRepository.find();
   }
 
-  findOne(id: number) {
-    return this.usersRepository.findOneBy({ id });
+  findOne(telegramId: number) {
+    return this.usersRepository.findOneBy({ telegramId });
   }
 
-  update(id: number, updateUserDto: UpdateUserDto) {
-    return this.usersRepository.update(id, updateUserDto);
+  update(telegramId: number, updateUserDto: UpdateUserDto) {
+    return this.usersRepository.update(telegramId, updateUserDto);
   }
 
-  remove(id: number) {
-    return this.usersRepository.delete(id);
+  remove(telegramId: number) {
+    return this.usersRepository.delete(telegramId);
   }
 }

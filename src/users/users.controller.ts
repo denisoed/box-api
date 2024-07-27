@@ -17,7 +17,12 @@ export class UsersController {
 
   @Post()
   create(@Body() createUserDto: CreateUserDto) {
-    return this.usersService.create(createUserDto);
+    try {
+      const data = this.usersService.create(createUserDto);
+      return { success: true, error: null, data };
+    } catch (error) {
+      return { success: false, error: error.message, data: null };
+    }
   }
 
   @Get()
@@ -25,23 +30,26 @@ export class UsersController {
     return this.usersService.findAll();
   }
 
-  @Get(':id')
-  findOne(@Param('id') id: string) {
-    return this.usersService.findOne(+id);
+  @Get(':telegramId')
+  findOne(@Param('telegramId') telegramId: string) {
+    return this.usersService.findOne(+telegramId);
   }
 
-  @Patch(':id')
-  async update(@Param('id') id: string, @Body() updateUserDto: UpdateUserDto) {
+  @Patch(':telegramId')
+  async update(
+    @Param('telegramId') telegramId: string,
+    @Body() updateUserDto: UpdateUserDto,
+  ) {
     try {
-      await this.usersService.update(+id, updateUserDto);
-      return { success: true, error: null };
+      const data = await this.usersService.update(+telegramId, updateUserDto);
+      return { success: true, error: null, data };
     } catch (error) {
-      return { success: false, error: error.message };
+      return { success: false, error: error.message, data: null };
     }
   }
 
-  @Delete(':id')
-  remove(@Param('id') id: string) {
-    return this.usersService.remove(+id);
+  @Delete(':telegramId')
+  remove(@Param('telegramId') telegramId: string) {
+    return this.usersService.remove(+telegramId);
   }
 }
