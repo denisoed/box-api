@@ -30,4 +30,4 @@ jobs:
           target: '~/app'
 
       - name: Run Docker Compose on VPS
-        run: ssh -o StrictHostKeyChecking=no ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} 'cd /app && docker-compose down && docker-compose -f docker-compose.yml -f production.yml -f dbadmin.yml up --build'
+        run: ssh -o StrictHostKeyChecking=no ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} 'cd ~/app && docker-compose down && docker-compose -f docker-compose.yml -f production.yml -f dbadmin.yml up --build'
