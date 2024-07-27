@@ -13,21 +13,28 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
 
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v1
+
+      - name: Login to GitHub Container Registry
+        run: echo "${{ secrets.GHCR_TOKEN }}" | docker login ghcr.io -u ${{ secrets.GHCR_USERNAME }} --password-stdin
+
+      - name: Build and push Docker image
+        run: |
+          docker build ${{ secrets.BUILD_PARAMS }} -t ghcr.io/${{ secrets.GHCR_USERNAME }}/box_back:latest .
+          docker push ghcr.io/${{ secrets.GHCR_USERNAME }}/box_back:latest
+
       - name: Set up SSH
         uses: webfactory/ssh-agent@v0.5.3
         with:
           ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
 
-      - name: Copy files to VPS
-        uses: appleboy/scp-action@master
-        with:
-          host: ${{ secrets.SSH_HOST }}
-          username: ${{ secrets.SSH_USER }}
-          key: ${{ secrets.SSH_PRIVATE_KEY }}
-          # Selecting all folders except "node_modules"
-          source: '.'
-          # The path is based on the directory where the user logged into the server starts
-          target: '~/box/backend'
-
-      - name: Run Docker Compose on VPS
-        run: ssh -o StrictHostKeyChecking=no ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} 'cd ~/box/backend && docker-compose down && docker-compose -f docker-compose.yml -f production.yml -f dbadmin.yml up -d --build'
+      - name: Deploy Docker container on remote server
+        run: |
+          ssh -o StrictHostKeyChecking=no ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} "
+            echo "${{ secrets.GHCR_TOKEN }}" | docker login ghcr.io -u ${{ secrets.GHCR_USERNAME }} --password-stdin &&
+            docker pull ghcr.io/${{ secrets.GHCR_USERNAME }}/box_back:latest &&
+            docker stop box_back || true &&
+            docker rm box_back || true &&
+            docker run -d --name box_back --restart=always --log-driver=syslog ${{ secrets.PARAMS }} ghcr.io/${{ secrets.GHCR_USERNAME }}/box_back:latest &&
+            docker image prune -a -f --filter 'until=1h'"
