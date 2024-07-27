@@ -16,12 +16,16 @@ export class UsersService {
     return this.usersRepository.save(createUserDto);
   }
 
-  findAll({ sort, limit }) {
+  findAll(sort, limit) {
     return this.usersRepository.find({
-      order: {
-        [sort.property]: sort.direction,
-      },
-      take: limit,
+      ...(sort
+        ? {
+            order: {
+              [sort.property]: sort.direction,
+            },
+          }
+        : {}),
+      ...(limit ? { take: limit } : {}),
     });
   }
 

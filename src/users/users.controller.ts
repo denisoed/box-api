@@ -44,7 +44,7 @@ export class UsersController {
     sort?: SortingParam,
     @Query('limit') limit?: number,
   ) {
-    const data = await this.usersService.findAll({ sort, limit });
+    const data = await this.usersService.findAll(sort, limit);
     return { success: true, error: null, data };
   }
 
