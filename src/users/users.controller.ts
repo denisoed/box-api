@@ -6,11 +6,18 @@ import {
   Patch,
   Param,
   Delete,
+  Query,
 } from '@nestjs/common';
 import { UsersService } from './users.service';
+import { GetUserDto } from './dto/get-user.dto';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
 import { getUserProfilePhoto } from '../helpers/telegram';
+import {
+  SortingParams,
+  SortingParam,
+} from '../decorators/sorting-params.decorator';
+import { ApiSortingQuery } from '../decorators/sorting-params-swagger.decorator';
 
 @Controller('users')
 export class UsersController {
@@ -30,9 +37,14 @@ export class UsersController {
     }
   }
 
+  @ApiSortingQuery(['score'])
   @Get()
-  async findAll() {
-    const data = await this.usersService.findAll();
+  async findAll(
+    @SortingParams(['score'])
+    sort?: SortingParam,
+    @Query('limit') limit?: number,
+  ) {
+    const data = await this.usersService.findAll({ sort, limit });
     return { success: true, error: null, data };
   }
 

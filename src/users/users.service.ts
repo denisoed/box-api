@@ -16,8 +16,13 @@ export class UsersService {
     return this.usersRepository.save(createUserDto);
   }
 
-  findAll() {
-    return this.usersRepository.find();
+  findAll({ sort, limit }) {
+    return this.usersRepository.find({
+      order: {
+        [sort.property]: sort.direction,
+      },
+      take: limit,
+    });
   }
 
   findOne(telegramId: number) {
