@@ -13,7 +13,6 @@ RUN yarn install --frozen-lockfile --production
 COPY . ${APP_ROOT}
 
 ARG telegram_bot_key
-
 ENV TELEGRAM_BOT_KEY=${telegram_bot_key}
 
 RUN yarn global add @nestjs/cli
