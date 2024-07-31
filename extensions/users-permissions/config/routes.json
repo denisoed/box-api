@@ -1,0 +1,13 @@
+{
+  "routes": [
+    {
+      "method": "POST",
+      "path": "/auth/telegram",
+      "handler": "Auth.telegram",
+      "config": {
+        "policies": [],
+        "prefix": ""
+      }
+    }
+  ]
+}

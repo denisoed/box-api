@@ -1,6 +1,0 @@
-services:
-  app:
-    build:
-      target: test-cov
-    volumes:
-      - ./coverage:/app/coverage
