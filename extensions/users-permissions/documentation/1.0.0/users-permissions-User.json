@@ -1338,10 +1338,12 @@
             "type": "string"
           },
           "score": {
-            "type": "integer"
+            "type": "integer",
+            "default": "0"
           },
           "dailyScore": {
-            "type": "integer"
+            "type": "integer",
+            "default": "0"
           }
         }
       },
@@ -1408,10 +1410,12 @@
             "type": "string"
           },
           "score": {
-            "type": "integer"
+            "type": "integer",
+            "default": "0"
           },
           "dailyScore": {
-            "type": "integer"
+            "type": "integer",
+            "default": "0"
           },
           "created_by": {
             "type": "string"

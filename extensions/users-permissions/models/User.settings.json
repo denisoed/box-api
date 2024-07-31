@@ -96,10 +96,12 @@
       "type": "string"
     },
     "score": {
-      "type": "biginteger"
+      "type": "biginteger",
+      "default": "0"
     },
     "dailyScore": {
-      "type": "biginteger"
+      "type": "biginteger",
+      "default": "0"
     }
   }
 }
