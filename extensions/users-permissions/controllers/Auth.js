@@ -154,5 +154,37 @@ module.exports = {
         : err;
       ctx.badRequest(null, formatError(adminError));
     }
+  },
+  async updateScore(ctx) {
+    const { score } = ctx.request.body;
+
+    if (!score || score === 0 || typeof score !== "number") {
+      return ctx.badRequest(
+        null,
+        formatError({
+          id: "Auth.form.error.score.missing",
+          message: "Missing score",
+        })
+      );
+    }
+
+    if (score < 0) {
+      return ctx.badRequest(
+        null,
+        formatError({
+          id: "Auth.form.error.score.invalid",
+          message: "Invalid score",
+        })
+      );
+    }
+
+    const user = await strapi
+      .query("user", "users-permissions")
+      .findOne({ id: ctx.state.user.id }, []);
+    user.score = +user.score + +score;
+    await strapi
+      .query("user", "users-permissions")
+      .update({ id: user.id }, user);
+    return ctx.send({ success: true, score: user.score });
   }
 };

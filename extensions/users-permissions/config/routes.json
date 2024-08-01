@@ -8,6 +8,15 @@
         "policies": [],
         "prefix": ""
       }
+    },
+    {
+      "method": "POST",
+      "path": "/user/updateScore",
+      "handler": "Auth.updateScore",
+      "config": {
+        "policies": [],
+        "prefix": ""
+      }
     }
   ]
 }

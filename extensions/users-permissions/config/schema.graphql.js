@@ -20,10 +20,16 @@ module.exports = {
     type UsersPermissionsAuthResponse {
       jwt: String!
       user: UsersPermissionsUser!
+    },
+
+    type UserScore {
+      success: Boolean!
+      score: Int!
     }
   `,
   mutation: `
-    telegram(initDataUnsafe: String!): UsersPermissionsAuthResponse!
+    telegram(initDataUnsafe: String!): UsersPermissionsAuthResponse!,
+    updateScore(score: Int!): UserScore!
   `,
   resolver: {
     Mutation: {
@@ -42,6 +48,22 @@ module.exports = {
 
           checkBadRequest(output);
 
+          return output;
+        },
+      },
+
+      updateScore: {
+        description: "Update Score",
+        resolverOf: "plugins::users-permissions.auth.updateScore",
+        resolver: async (obj, options, { context }) => {
+          context.query = _.toPlainObject(options);
+          await strapi.plugins[
+            "users-permissions"
+          ].controllers.auth.updateScore(context);
+          let output = context.body.toJSON
+            ? context.body.toJSON()
+            : context.body;
+          checkBadRequest(output);
           return output;
         },
       },
