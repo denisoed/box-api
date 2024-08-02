@@ -49,6 +49,15 @@ function verifyWebTgAuthData(data) {
   return validateInitDataUnsafe(data);
 }
 
+function calcDailyScore(user, newScore) {
+  const today = new Date();
+  const lastUpdate = new Date(user.updated_at);
+  if (lastUpdate.getDate() === today.getDate()) {
+    return +user.dailyScore + +newScore;
+  }
+  return +newScore
+}
+
 module.exports = {
   async telegram(ctx) {
     const today = new Date();
@@ -182,6 +191,7 @@ module.exports = {
       .query("user", "users-permissions")
       .findOne({ id: ctx.state.user.id }, []);
     user.score = +user.score + +score;
+    user.dailyScore = calcDailyScore(user, score);
     await strapi
       .query("user", "users-permissions")
       .update({ id: user.id }, user);
