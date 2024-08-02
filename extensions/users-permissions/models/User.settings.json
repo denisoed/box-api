@@ -102,6 +102,10 @@
     "dailyScore": {
       "type": "biginteger",
       "default": "0"
+    },
+    "bestScore": {
+      "type": "biginteger",
+      "default": "0"
     }
   }
 }

@@ -591,6 +591,9 @@
                 "dailyScore": {
                   "type": "integer"
                 },
+                "bestScore": {
+                  "type": "integer"
+                },
                 "created_by": {
                   "type": "string"
                 },

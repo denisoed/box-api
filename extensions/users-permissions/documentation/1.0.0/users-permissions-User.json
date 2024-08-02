@@ -1344,6 +1344,10 @@
           "dailyScore": {
             "type": "integer",
             "default": "0"
+          },
+          "bestScore": {
+            "type": "integer",
+            "default": "0"
           }
         }
       },
@@ -1414,6 +1418,10 @@
             "default": "0"
           },
           "dailyScore": {
+            "type": "integer",
+            "default": "0"
+          },
+          "bestScore": {
             "type": "integer",
             "default": "0"
           },
