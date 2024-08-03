@@ -618,6 +618,14 @@
           "type": {
             "type": "uid"
           },
+          "done": {
+            "type": "boolean",
+            "default": false
+          },
+          "ready": {
+            "type": "boolean",
+            "default": false
+          },
           "published_at": {
             "type": "string",
             "format": "date-time"
@@ -637,6 +645,14 @@
           },
           "type": {
             "type": "uid"
+          },
+          "done": {
+            "type": "boolean",
+            "default": false
+          },
+          "ready": {
+            "type": "boolean",
+            "default": false
           },
           "published_at": {
             "type": "string",
