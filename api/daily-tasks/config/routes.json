@@ -1,0 +1,52 @@
+{
+  "routes": [
+    {
+      "method": "GET",
+      "path": "/daily-tasks",
+      "handler": "daily-tasks.find",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/daily-tasks/count",
+      "handler": "daily-tasks.count",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/daily-tasks/:id",
+      "handler": "daily-tasks.findOne",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "POST",
+      "path": "/daily-tasks",
+      "handler": "daily-tasks.create",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "PUT",
+      "path": "/daily-tasks/:id",
+      "handler": "daily-tasks.update",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "DELETE",
+      "path": "/daily-tasks/:id",
+      "handler": "daily-tasks.delete",
+      "config": {
+        "policies": []
+      }
+    }
+  ]
+}

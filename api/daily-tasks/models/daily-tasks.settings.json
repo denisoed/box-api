@@ -1,0 +1,28 @@
+{
+  "kind": "collectionType",
+  "collectionName": "daily_tasks",
+  "info": {
+    "name": "Daily Tasks",
+    "description": ""
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true,
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "goal": {
+      "type": "biginteger"
+    },
+    "reward": {
+      "type": "biginteger"
+    },
+    "desciption": {
+      "type": "richtext"
+    },
+    "type": {
+      "type": "uid"
+    }
+  }
+}
