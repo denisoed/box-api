@@ -594,6 +594,9 @@
                 "bestScore": {
                   "type": "integer"
                 },
+                "tasks": {
+                  "type": "dynamiczone"
+                },
                 "created_by": {
                   "type": "string"
                 },

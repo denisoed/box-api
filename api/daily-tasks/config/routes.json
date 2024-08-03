@@ -33,6 +33,14 @@
       }
     },
     {
+      "method": "POST",
+      "path": "/daily-tasks/claim",
+      "handler": "daily-tasks.claimReward",
+      "config": {
+        "policies": []
+      }
+    },
+    {
       "method": "PUT",
       "path": "/daily-tasks/:id",
       "handler": "daily-tasks.update",

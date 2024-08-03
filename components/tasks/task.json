@@ -1,0 +1,14 @@
+{
+  "collectionName": "components_task_tasks",
+  "info": {
+    "name": "task",
+    "icon": "ad",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "type": {
+      "type": "string"
+    }
+  }
+}

@@ -14,7 +14,7 @@
       "name": "Apache 2.0",
       "url": "https://www.apache.org/licenses/LICENSE-2.0.html"
     },
-    "x-generation-date": "08/03/2024 1:03:41 PM"
+    "x-generation-date": "08/03/2024 2:14:43 PM"
   },
   "x-strapi-config": {
     "path": "/documentation",
@@ -567,6 +567,77 @@
             }
           }
         ]
+      }
+    },
+    "/daily-tasks/claim": {
+      "post": {
+        "deprecated": false,
+        "description": "Create a new daily-tasks record",
+        "responses": {
+          "200": {
+            "description": "Retrieve daily-tasks document(s)",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "foo": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "unexpected error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        },
+        "summary": "",
+        "tags": [
+          "Daily-tasks"
+        ],
+        "requestBody": {
+          "description": "",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "properties": {
+                  "foo": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        }
       }
     },
     "/email/": {
@@ -2982,6 +3053,9 @@
                 "bestScore": {
                   "type": "integer"
                 },
+                "tasks": {
+                  "type": "dynamiczone"
+                },
                 "created_by": {
                   "type": "string"
                 },
@@ -3192,6 +3266,32 @@
           "bestScore": {
             "type": "integer",
             "default": "0"
+          },
+          "tasks": {
+            "type": "array",
+            "items": {
+              "oneOf": [
+                {
+                  "properties": {
+                    "__component": {
+                      "type": "string",
+                      "enum": [
+                        "tasks.task"
+                      ]
+                    },
+                    "id": {
+                      "type": "string"
+                    },
+                    "type": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "id"
+                  ]
+                }
+              ]
+            }
           }
         }
       },
@@ -3268,6 +3368,32 @@
           "bestScore": {
             "type": "integer",
             "default": "0"
+          },
+          "tasks": {
+            "type": "array",
+            "items": {
+              "oneOf": [
+                {
+                  "properties": {
+                    "__component": {
+                      "type": "string",
+                      "enum": [
+                        "tasks.task"
+                      ]
+                    },
+                    "id": {
+                      "type": "string"
+                    },
+                    "type": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "id"
+                  ]
+                }
+              ]
+            }
           },
           "created_by": {
             "type": "string"

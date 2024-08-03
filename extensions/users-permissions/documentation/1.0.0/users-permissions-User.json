@@ -1348,6 +1348,32 @@
           "bestScore": {
             "type": "integer",
             "default": "0"
+          },
+          "tasks": {
+            "type": "array",
+            "items": {
+              "oneOf": [
+                {
+                  "properties": {
+                    "__component": {
+                      "type": "string",
+                      "enum": [
+                        "tasks.task"
+                      ]
+                    },
+                    "id": {
+                      "type": "string"
+                    },
+                    "type": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "id"
+                  ]
+                }
+              ]
+            }
           }
         }
       },
@@ -1424,6 +1450,32 @@
           "bestScore": {
             "type": "integer",
             "default": "0"
+          },
+          "tasks": {
+            "type": "array",
+            "items": {
+              "oneOf": [
+                {
+                  "properties": {
+                    "__component": {
+                      "type": "string",
+                      "enum": [
+                        "tasks.task"
+                      ]
+                    },
+                    "id": {
+                      "type": "string"
+                    },
+                    "type": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "id"
+                  ]
+                }
+              ]
+            }
           },
           "created_by": {
             "type": "string"

@@ -106,6 +106,12 @@
     "bestScore": {
       "type": "biginteger",
       "default": "0"
+    },
+    "tasks": {
+      "type": "dynamiczone",
+      "components": [
+        "tasks.task"
+      ]
     }
   }
 }
