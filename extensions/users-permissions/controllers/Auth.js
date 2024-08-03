@@ -10,6 +10,7 @@
 const _ = require("lodash");
 const { sanitizeEntity } = require("strapi-utils");
 const { validateInitDataUnsafe } = require("./helpers");
+const { checkResetDailyTasks, calcDailyScore } = require("../../../helpers");
 
 const formatError = (error) => [
   { messages: [{ id: error.id, message: error.message, field: error.field }] },
@@ -47,15 +48,6 @@ function verifyWebTgAuthData(data) {
     return false;
   }
   return validateInitDataUnsafe(data);
-}
-
-function calcDailyScore(user, newScore) {
-  const today = new Date();
-  const lastUpdate = new Date(user.updated_at);
-  if (lastUpdate.getDate() === today.getDate()) {
-    return +user.dailyScore + +newScore;
-  }
-  return +newScore
 }
 
 module.exports = {
@@ -192,6 +184,9 @@ module.exports = {
       .findOne({ id: ctx.state.user.id }, []);
     user.score = +user.score + +score;
     user.dailyScore = calcDailyScore(user, score);
+    if (checkResetDailyTasks(user)) {
+      user.tasks = [];
+    }
     await strapi
       .query("user", "users-permissions")
       .update({ id: user.id }, user);

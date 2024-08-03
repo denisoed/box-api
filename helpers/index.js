@@ -16,8 +16,22 @@ function checkDailyTaskDone(user, taskType) {
   return false;
 }
 
+function checkResetDailyTasks(user) {
+  const today = new Date();
+  const lastUpdate = new Date(user.updated_at);
+  if (lastUpdate.getDate() === today.getDate()) {
+    return false;
+  }
+  return true;
+}
+
 const formatError = (error) => [
   { messages: [{ id: error.id, message: error.message, field: error.field }] },
 ];
 
-module.exports = { calcDailyScore, formatError, checkDailyTaskDone }
+module.exports = {
+  checkResetDailyTasks,
+  calcDailyScore,
+  formatError,
+  checkDailyTaskDone
+}
