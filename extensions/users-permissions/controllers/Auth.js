@@ -10,7 +10,7 @@
 const _ = require("lodash");
 const { sanitizeEntity } = require("strapi-utils");
 const { validateInitDataUnsafe } = require("./helpers");
-const { checkResetDailyTasks, calcDailyScore } = require("../../../helpers");
+const { checkResetDailyScore, calcDailyScore } = require("../../../helpers");
 
 const formatError = (error) => [
   { messages: [{ id: error.id, message: error.message, field: error.field }] },
@@ -126,8 +126,9 @@ module.exports = {
 
     if (user) {
       const data = generateNewJWT(user);
-      if (checkResetDailyTasks(user)) {
+      if (checkResetDailyScore(user)) {
         user.tasks = [];
+        user.dailyScore = 0;
         strapi.query("user", "users-permissions").update({ id: user.id }, user);
       }
       return ctx.send(data);
@@ -188,7 +189,7 @@ module.exports = {
       .findOne({ id: ctx.state.user.id }, []);
     user.score = +user.score + +score;
     user.dailyScore = calcDailyScore(user, score);
-    if (checkResetDailyTasks(user)) {
+    if (checkResetDailyScore(user)) {
       user.tasks = [];
     }
     await strapi

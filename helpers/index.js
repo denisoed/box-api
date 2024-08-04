@@ -16,7 +16,7 @@ function checkDailyTaskDone(user, taskType) {
   return false;
 }
 
-function checkResetDailyTasks(user) {
+function checkResetDailyScore(user) {
   const today = new Date();
   const lastUpdate = new Date(user.updated_at);
   if (lastUpdate.getDate() === today.getDate()) {
@@ -30,7 +30,7 @@ const formatError = (error) => [
 ];
 
 module.exports = {
-  checkResetDailyTasks,
+  checkResetDailyScore,
   calcDailyScore,
   formatError,
   checkDailyTaskDone
