@@ -126,6 +126,10 @@ module.exports = {
 
     if (user) {
       const data = generateNewJWT(user);
+      if (checkResetDailyTasks(user)) {
+        user.tasks = [];
+        strapi.query("user", "users-permissions").update({ id: user.id }, user);
+      }
       return ctx.send(data);
     }
 
