@@ -14,7 +14,7 @@
       "name": "Apache 2.0",
       "url": "https://www.apache.org/licenses/LICENSE-2.0.html"
     },
-    "x-generation-date": "08/03/2024 3:02:57 PM"
+    "x-generation-date": "08/13/2024 7:00:06 PM"
   },
   "x-strapi-config": {
     "path": "/documentation",
@@ -3042,9 +3042,6 @@
                 "bio": {
                   "type": "string"
                 },
-                "avatar": {
-                  "type": "string"
-                },
                 "tokenVersion": {
                   "type": "integer"
                 },
@@ -3071,6 +3068,9 @@
                 },
                 "tasks": {
                   "type": "dynamiczone"
+                },
+                "avatar": {
+                  "type": "object"
                 },
                 "created_by": {
                   "type": "string"
@@ -3191,73 +3191,6 @@
           "bio": {
             "type": "string"
           },
-          "avatar": {
-            "required": [
-              "id",
-              "name",
-              "hash",
-              "mime",
-              "size",
-              "url",
-              "provider"
-            ],
-            "properties": {
-              "id": {
-                "type": "string"
-              },
-              "name": {
-                "type": "string"
-              },
-              "alternativeText": {
-                "type": "string"
-              },
-              "caption": {
-                "type": "string"
-              },
-              "width": {
-                "type": "integer"
-              },
-              "height": {
-                "type": "integer"
-              },
-              "formats": {
-                "type": "object"
-              },
-              "hash": {
-                "type": "string"
-              },
-              "ext": {
-                "type": "string"
-              },
-              "mime": {
-                "type": "string"
-              },
-              "size": {
-                "type": "number"
-              },
-              "url": {
-                "type": "string"
-              },
-              "previewUrl": {
-                "type": "string"
-              },
-              "provider": {
-                "type": "string"
-              },
-              "provider_metadata": {
-                "type": "object"
-              },
-              "related": {
-                "type": "string"
-              },
-              "created_by": {
-                "type": "string"
-              },
-              "updated_by": {
-                "type": "string"
-              }
-            }
-          },
           "expiredAt": {
             "type": "string",
             "format": "date-time"
@@ -3308,6 +3241,9 @@
                 }
               ]
             }
+          },
+          "avatar": {
+            "type": "object"
           }
         }
       },
@@ -3410,6 +3346,9 @@
                 }
               ]
             }
+          },
+          "avatar": {
+            "type": "object"
           },
           "created_by": {
             "type": "string"

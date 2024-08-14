@@ -567,9 +567,6 @@
                 "bio": {
                   "type": "string"
                 },
-                "avatar": {
-                  "type": "string"
-                },
                 "tokenVersion": {
                   "type": "integer"
                 },
@@ -596,6 +593,9 @@
                 },
                 "tasks": {
                   "type": "dynamiczone"
+                },
+                "avatar": {
+                  "type": "object"
                 },
                 "created_by": {
                   "type": "string"

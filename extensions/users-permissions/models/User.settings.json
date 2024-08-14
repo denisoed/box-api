@@ -65,18 +65,6 @@
     "bio": {
       "type": "string"
     },
-    "avatar": {
-      "model": "file",
-      "via": "related",
-      "allowedTypes": [
-        "images",
-        "files",
-        "videos"
-      ],
-      "plugin": "upload",
-      "required": false,
-      "pluginOptions": {}
-    },
     "tokenVersion": {
       "type": "integer",
       "default": 1,
@@ -112,6 +100,9 @@
       "components": [
         "tasks.task"
       ]
+    },
+    "avatar": {
+      "type": "json"
     }
   }
 }
