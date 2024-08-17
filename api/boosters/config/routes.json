@@ -33,6 +33,14 @@
       }
     },
     {
+      "method": "POST",
+      "path": "/boosters/buy",
+      "handler": "boosters.buyBooster",
+      "config": {
+        "policies": []
+      }
+    },
+    {
       "method": "PUT",
       "path": "/boosters/:id",
       "handler": "boosters.update",
