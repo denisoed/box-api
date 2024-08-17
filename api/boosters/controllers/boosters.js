@@ -34,7 +34,7 @@ module.exports = {
       return ctx.badRequest(
         null,
         formatError({
-          id: 'Auth.form.error.booster.alreadyClaimed',
+          id: 'Auth.form.error.booster.alreadyBuyed',
           message: 'Booster already buyed',
         })
       );
