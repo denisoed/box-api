@@ -25,6 +25,15 @@ function checkResetDailyScore(user) {
   return true;
 }
 
+function updateUserBoosters(user) {
+  const updatedBoosters = user.boosters.map(booster => ({
+    ...booster,
+    roundsLeft: booster.roundsLeft - 1
+  }))
+  const filteredBoosters = updatedBoosters.filter(booster => booster.roundsLeft > 0)
+  return filteredBoosters;
+}
+
 const formatError = (error) => [
   { messages: [{ id: error.id, message: error.message, field: error.field }] },
 ];
@@ -32,6 +41,7 @@ const formatError = (error) => [
 module.exports = {
   checkResetDailyScore,
   calcDailyScore,
+  updateUserBoosters,
   formatError,
   checkDailyTaskDone
 }

@@ -1,0 +1,33 @@
+{
+  "kind": "collectionType",
+  "collectionName": "boosters",
+  "info": {
+    "name": "Boosters",
+    "description": ""
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true,
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "reward": {
+      "type": "biginteger"
+    },
+    "rounds": {
+      "type": "biginteger"
+    },
+    "price": {
+      "type": "biginteger",
+      "default": "0"
+    },
+    "stars": {
+      "type": "biginteger",
+      "default": "0"
+    },
+    "type": {
+      "type": "uid"
+    }
+  }
+}

@@ -98,11 +98,17 @@
     "tasks": {
       "type": "dynamiczone",
       "components": [
-        "tasks.task"
+        "user.task"
       ]
     },
     "avatar": {
       "type": "json"
+    },
+    "boosters": {
+      "type": "dynamiczone",
+      "components": [
+        "user.boosters"
+      ]
     }
   }
 }

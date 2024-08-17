@@ -1291,7 +1291,7 @@
                     "__component": {
                       "type": "string",
                       "enum": [
-                        "tasks.task"
+                        "user.task"
                       ]
                     },
                     "id": {
@@ -1310,6 +1310,38 @@
           },
           "avatar": {
             "type": "object"
+          },
+          "boosters": {
+            "type": "array",
+            "items": {
+              "oneOf": [
+                {
+                  "properties": {
+                    "__component": {
+                      "type": "string",
+                      "enum": [
+                        "user.boosters"
+                      ]
+                    },
+                    "id": {
+                      "type": "string"
+                    },
+                    "type": {
+                      "type": "string"
+                    },
+                    "roundsLeft": {
+                      "type": "integer"
+                    },
+                    "reward": {
+                      "type": "integer"
+                    }
+                  },
+                  "required": [
+                    "id"
+                  ]
+                }
+              ]
+            }
           }
         }
       },
@@ -1396,7 +1428,7 @@
                     "__component": {
                       "type": "string",
                       "enum": [
-                        "tasks.task"
+                        "user.task"
                       ]
                     },
                     "id": {
@@ -1415,6 +1447,38 @@
           },
           "avatar": {
             "type": "object"
+          },
+          "boosters": {
+            "type": "array",
+            "items": {
+              "oneOf": [
+                {
+                  "properties": {
+                    "__component": {
+                      "type": "string",
+                      "enum": [
+                        "user.boosters"
+                      ]
+                    },
+                    "id": {
+                      "type": "string"
+                    },
+                    "type": {
+                      "type": "string"
+                    },
+                    "roundsLeft": {
+                      "type": "integer"
+                    },
+                    "reward": {
+                      "type": "integer"
+                    }
+                  },
+                  "required": [
+                    "id"
+                  ]
+                }
+              ]
+            }
           },
           "created_by": {
             "type": "string"
