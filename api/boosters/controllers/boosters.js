@@ -5,6 +5,8 @@
  * to customize this controller
  */
 
+const { formatError } = require('../../../helpers')
+
 module.exports = {
   async buyBooster(ctx) {
     const { boosterType } = ctx.request.body;
@@ -38,7 +40,7 @@ module.exports = {
       );
     }
     const newComponentBooster = {
-      __component: 'boosters.booster',
+      __component: 'user.boosters',
       type: booster.type,
       roundsLeft: booster.rounds,
       reward: booster.reward
