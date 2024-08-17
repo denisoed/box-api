@@ -39,6 +39,15 @@ module.exports = {
         })
       );
     }
+    if (+user.score < +booster.price) {
+      return ctx.badRequest(
+        null,
+        formatError({
+          id: 'Auth.form.error.booster.notEnoughBalance',
+          message: 'Not enough balance',
+        })
+      );
+    }
     const newComponentBooster = {
       __component: 'user.boosters',
       type: booster.type,
