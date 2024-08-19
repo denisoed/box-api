@@ -1,0 +1,60 @@
+{
+  "routes": [
+    {
+      "method": "GET",
+      "path": "/boosters",
+      "handler": "boosters.find",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/boosters/count",
+      "handler": "boosters.count",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/boosters/:id",
+      "handler": "boosters.findOne",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "POST",
+      "path": "/boosters",
+      "handler": "boosters.create",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "POST",
+      "path": "/boosters/buy",
+      "handler": "boosters.buyBooster",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "PUT",
+      "path": "/boosters/:id",
+      "handler": "boosters.update",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "DELETE",
+      "path": "/boosters/:id",
+      "handler": "boosters.delete",
+      "config": {
+        "policies": []
+      }
+    }
+  ]
+}

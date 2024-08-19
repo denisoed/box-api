@@ -1,82 +1,18 @@
 {
   "paths": {
-    "/users-permissions/roles/{id}": {
+    "/boosters": {
       "get": {
         "deprecated": false,
-        "description": "Retrieve a role depending on its id",
+        "description": "Find all the boosters's records",
         "responses": {
           "200": {
-            "description": "response",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/UsersPermissionsRole"
-                }
-              }
-            }
-          },
-          "403": {
-            "description": "Forbidden",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Error"
-                }
-              }
-            }
-          },
-          "404": {
-            "description": "Not found",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Error"
-                }
-              }
-            }
-          },
-          "default": {
-            "description": "unexpected error",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Error"
-                }
-              }
-            }
-          }
-        },
-        "summary": "",
-        "tags": [
-          "UsersPermissions - Role"
-        ],
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "description": "",
-            "deprecated": false,
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          }
-        ]
-      }
-    },
-    "/users-permissions/roles": {
-      "get": {
-        "deprecated": false,
-        "description": "Retrieve all role documents",
-        "responses": {
-          "200": {
-            "description": "response",
+            "description": "Retrieve boosters document(s)",
             "content": {
               "application/json": {
                 "schema": {
                   "type": "array",
                   "items": {
-                    "$ref": "#/components/schemas/UsersPermissionsRole"
+                    "$ref": "#/components/schemas/Boosters"
                   }
                 }
               }
@@ -115,7 +51,7 @@
         },
         "summary": "",
         "tags": [
-          "UsersPermissions - Role"
+          "Boosters"
         ],
         "parameters": [
           {
@@ -258,14 +194,14 @@
       },
       "post": {
         "deprecated": false,
-        "description": "Create a new role",
+        "description": "Create a new boosters record",
         "responses": {
           "200": {
-            "description": "response",
+            "description": "Retrieve boosters document(s)",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/UsersPermissionsRole"
+                  "$ref": "#/components/schemas/Boosters"
                 }
               }
             }
@@ -303,7 +239,7 @@
         },
         "summary": "",
         "tags": [
-          "UsersPermissions - Role"
+          "Boosters"
         ],
         "requestBody": {
           "description": "",
@@ -311,24 +247,28 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/NewUsersPermissionsRole"
+                "$ref": "#/components/schemas/NewBoosters"
               }
             }
           }
         }
       }
     },
-    "/users-permissions/roles/{role}": {
-      "put": {
+    "/boosters/count": {
+      "get": {
         "deprecated": false,
-        "description": "Update a role",
+        "description": "Retrieve the number of boosters documents",
         "responses": {
           "200": {
-            "description": "response",
+            "description": "Retrieve boosters document(s)",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/UsersPermissionsRole"
+                  "properties": {
+                    "count": {
+                      "type": "integer"
+                    }
+                  }
                 }
               }
             }
@@ -366,11 +306,64 @@
         },
         "summary": "",
         "tags": [
-          "UsersPermissions - Role"
+          "Boosters"
+        ],
+        "parameters": []
+      }
+    },
+    "/boosters/{id}": {
+      "get": {
+        "deprecated": false,
+        "description": "Find one boosters record",
+        "responses": {
+          "200": {
+            "description": "Retrieve boosters document(s)",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Boosters"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "unexpected error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        },
+        "summary": "",
+        "tags": [
+          "Boosters"
         ],
         "parameters": [
           {
-            "name": "role",
+            "name": "id",
             "in": "path",
             "description": "",
             "deprecated": false,
@@ -379,6 +372,56 @@
               "type": "string"
             }
           }
+        ]
+      },
+      "put": {
+        "deprecated": false,
+        "description": "Update a single boosters record",
+        "responses": {
+          "200": {
+            "description": "Retrieve boosters document(s)",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Boosters"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "unexpected error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        },
+        "summary": "",
+        "tags": [
+          "Boosters"
         ],
         "requestBody": {
           "description": "",
@@ -386,18 +429,95 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/NewUsersPermissionsRole"
+                "$ref": "#/components/schemas/NewBoosters"
               }
             }
           }
-        }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "",
+            "deprecated": false,
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
       },
       "delete": {
         "deprecated": false,
-        "description": "Delete a role",
+        "description": "Delete a single boosters record",
         "responses": {
           "200": {
-            "description": "response",
+            "description": "deletes a single boosters based on the ID supplied",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "integer",
+                  "format": "int64"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "unexpected error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        },
+        "summary": "",
+        "tags": [
+          "Boosters"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "",
+            "deprecated": false,
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
+      }
+    },
+    "/boosters/buy": {
+      "post": {
+        "deprecated": false,
+        "description": "Create a new boosters record",
+        "responses": {
+          "200": {
+            "description": "Retrieve boosters document(s)",
             "content": {
               "application/json": {
                 "schema": {
@@ -443,200 +563,81 @@
         },
         "summary": "",
         "tags": [
-          "UsersPermissions - Role"
+          "Boosters"
         ],
-        "parameters": [
-          {
-            "name": "role",
-            "in": "path",
-            "description": "",
-            "deprecated": false,
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          }
-        ]
-      }
-    }
-  },
-  "components": {
-    "schemas": {
-      "UsersPermissionsRole": {
-        "required": [
-          "id",
-          "name"
-        ],
-        "properties": {
-          "id": {
-            "type": "string"
-          },
-          "name": {
-            "type": "string",
-            "minLength": 3
-          },
-          "description": {
-            "type": "string"
-          },
-          "type": {
-            "type": "string"
-          },
-          "permissions": {
-            "type": "array",
-            "items": {
-              "required": [
-                "id",
-                "type",
-                "controller",
-                "action",
-                "enabled"
-              ],
-              "properties": {
-                "id": {
-                  "type": "string"
-                },
-                "type": {
-                  "type": "string"
-                },
-                "controller": {
-                  "type": "string"
-                },
-                "action": {
-                  "type": "string"
-                },
-                "enabled": {
-                  "type": "boolean"
-                },
-                "policy": {
-                  "type": "string"
-                },
-                "role": {
-                  "type": "string"
-                },
-                "created_by": {
-                  "type": "string"
-                },
-                "updated_by": {
-                  "type": "string"
-                }
-              }
-            }
-          },
-          "users": {
-            "type": "array",
-            "items": {
-              "required": [
-                "id",
-                "username",
-                "email"
-              ],
-              "properties": {
-                "id": {
-                  "type": "string"
-                },
-                "username": {
-                  "type": "string"
-                },
-                "email": {
-                  "type": "string"
-                },
-                "provider": {
-                  "type": "string"
-                },
-                "password": {
-                  "type": "string"
-                },
-                "resetPasswordToken": {
-                  "type": "string"
-                },
-                "confirmationToken": {
-                  "type": "string"
-                },
-                "confirmed": {
-                  "type": "boolean"
-                },
-                "blocked": {
-                  "type": "boolean"
-                },
-                "role": {
-                  "type": "string"
-                },
-                "fullname": {
-                  "type": "string"
-                },
-                "bio": {
-                  "type": "string"
-                },
-                "tokenVersion": {
-                  "type": "integer"
-                },
-                "expiredAt": {
-                  "type": "string"
-                },
-                "telegramId": {
-                  "type": "integer"
-                },
-                "firstname": {
-                  "type": "string"
-                },
-                "lastname": {
-                  "type": "string"
-                },
-                "score": {
-                  "type": "integer"
-                },
-                "dailyScore": {
-                  "type": "integer"
-                },
-                "bestScore": {
-                  "type": "integer"
-                },
-                "tasks": {
-                  "type": "dynamiczone"
-                },
-                "avatar": {
-                  "type": "object"
-                },
-                "boosters": {
-                  "type": "dynamiczone"
-                },
-                "created_by": {
-                  "type": "string"
-                },
-                "updated_by": {
-                  "type": "string"
+        "requestBody": {
+          "description": "",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "properties": {
+                  "foo": {
+                    "type": "string"
+                  }
                 }
               }
             }
           }
         }
-      },
-      "NewUsersPermissionsRole": {
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "Boosters": {
         "required": [
-          "name"
+          "id"
         ],
         "properties": {
-          "name": {
-            "type": "string",
-            "minLength": 3
-          },
-          "description": {
+          "id": {
             "type": "string"
+          },
+          "reward": {
+            "type": "integer"
+          },
+          "rounds": {
+            "type": "integer"
+          },
+          "price": {
+            "type": "integer",
+            "default": "0"
+          },
+          "stars": {
+            "type": "integer",
+            "default": "0"
           },
           "type": {
-            "type": "string"
+            "type": "uid"
           },
-          "permissions": {
-            "type": "array",
-            "items": {
-              "type": "string"
-            }
+          "published_at": {
+            "type": "string",
+            "format": "date-time"
+          }
+        }
+      },
+      "NewBoosters": {
+        "properties": {
+          "reward": {
+            "type": "integer"
           },
-          "users": {
-            "type": "array",
-            "items": {
-              "type": "string"
-            }
+          "rounds": {
+            "type": "integer"
+          },
+          "price": {
+            "type": "integer",
+            "default": "0"
+          },
+          "stars": {
+            "type": "integer",
+            "default": "0"
+          },
+          "type": {
+            "type": "uid"
+          },
+          "published_at": {
+            "type": "string",
+            "format": "date-time"
           },
           "created_by": {
             "type": "string"
@@ -650,7 +651,7 @@
   },
   "tags": [
     {
-      "name": "UsersPermissions - Role"
+      "name": "Boosters"
     }
   ]
 }

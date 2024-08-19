@@ -60,7 +60,7 @@ module.exports = {
       );
     }
     const newComponentTask = {
-      __component: 'tasks.task',
+      __component: 'user.task',
       type: taskType,
     };
     user.score = +user.score + +dailyTask.reward;

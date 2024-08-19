@@ -10,7 +10,11 @@
 const _ = require("lodash");
 const { sanitizeEntity } = require("strapi-utils");
 const { validateInitDataUnsafe } = require("./helpers");
-const { checkResetDailyScore, calcDailyScore } = require("../../../helpers");
+const {
+  checkResetDailyScore,
+  calcDailyScore,
+  updateUserBoosters
+} = require("../../../helpers");
 
 const formatError = (error) => [
   { messages: [{ id: error.id, message: error.message, field: error.field }] },
@@ -187,11 +191,17 @@ module.exports = {
     const user = await strapi
       .query("user", "users-permissions")
       .findOne({ id: ctx.state.user.id }, []);
+
+    // ---- Update Score ---- //
     user.score = +user.score + +score;
     user.dailyScore = calcDailyScore(user, score);
     if (checkResetDailyScore(user)) {
       user.tasks = [];
     }
+
+    // ---- Update Boosters ---- //
+    user.boosters = updateUserBoosters(user);
+
     await strapi
       .query("user", "users-permissions")
       .update({ id: user.id }, user);
