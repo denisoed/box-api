@@ -6,8 +6,45 @@
  */
 
 const { formatError } = require('../../../helpers')
+const { Bot } = require('grammy');
+
+const bot = new Bot(process.env.TELEGRAM_BOT_KEY);
+
+const payload = '{}';
+const currency = 'XTR';
 
 module.exports = {
+  async find(ctx) {
+    const user = await strapi.query('user', 'users-permissions').findOne({ id: ctx.state.user.id });
+    if (!user) {
+      return ctx.badRequest(
+        null,
+        formatError({
+          id: 'Auth.form.error.user.notFound',
+          message: 'User not found',
+        })
+      );
+    }
+
+    const boosters = await strapi.query('boosters').find(ctx.query);
+    const formattedBoosters = await Promise.all(
+      boosters.map(async (b) => ({
+        ...b,
+        invoiceLink: b.stars ? await bot.api.createInvoiceLink(
+          `x${b.reward} for ${b.rounds} rounds`,
+          `This booster multiplies earned points by ${b.reward} for ${b.rounds} of rounds after purchase`,
+          payload,
+          '', // Provider token must be empty for Telegram Stars
+          currency,
+          [{
+            amount: b.stars,
+            label: `x${b.reward} for ${b.rounds} rounds`,
+          }],
+        ) : null,
+      }))
+    )
+    return formattedBoosters;
+  },
   async buyBooster(ctx) {
     const { boosterType } = ctx.request.body;
     const user = await strapi.query('user', 'users-permissions').findOne({ id: ctx.state.user.id });
