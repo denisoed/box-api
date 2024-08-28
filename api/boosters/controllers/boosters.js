@@ -73,7 +73,7 @@ module.exports = {
         })
       );
     }
-    if (+user.score < +booster.price) {
+    if (+user?.score < +booster?.price && !booster?.stars) {
       return ctx.badRequest(
         null,
         formatError({
