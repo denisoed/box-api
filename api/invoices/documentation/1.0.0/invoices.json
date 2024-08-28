@@ -1,18 +1,18 @@
 {
   "paths": {
-    "/boosters": {
+    "/invoices": {
       "get": {
         "deprecated": false,
-        "description": "Find all the boosters's records",
+        "description": "Find all the invoices's records",
         "responses": {
           "200": {
-            "description": "Retrieve boosters document(s)",
+            "description": "Retrieve invoices document(s)",
             "content": {
               "application/json": {
                 "schema": {
                   "type": "array",
                   "items": {
-                    "$ref": "#/components/schemas/Boosters"
+                    "$ref": "#/components/schemas/Invoices"
                   }
                 }
               }
@@ -51,7 +51,7 @@
         },
         "summary": "",
         "tags": [
-          "Boosters"
+          "Invoices"
         ],
         "parameters": [
           {
@@ -194,14 +194,14 @@
       },
       "post": {
         "deprecated": false,
-        "description": "Create a new boosters record",
+        "description": "Create a new invoices record",
         "responses": {
           "200": {
-            "description": "Retrieve boosters document(s)",
+            "description": "Retrieve invoices document(s)",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/Boosters"
+                  "$ref": "#/components/schemas/Invoices"
                 }
               }
             }
@@ -239,7 +239,7 @@
         },
         "summary": "",
         "tags": [
-          "Boosters"
+          "Invoices"
         ],
         "requestBody": {
           "description": "",
@@ -247,20 +247,20 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/NewBoosters"
+                "$ref": "#/components/schemas/NewInvoices"
               }
             }
           }
         }
       }
     },
-    "/boosters/count": {
+    "/invoices/count": {
       "get": {
         "deprecated": false,
-        "description": "Retrieve the number of boosters documents",
+        "description": "Retrieve the number of invoices documents",
         "responses": {
           "200": {
-            "description": "Retrieve boosters document(s)",
+            "description": "Retrieve invoices document(s)",
             "content": {
               "application/json": {
                 "schema": {
@@ -306,22 +306,22 @@
         },
         "summary": "",
         "tags": [
-          "Boosters"
+          "Invoices"
         ],
         "parameters": []
       }
     },
-    "/boosters/{id}": {
+    "/invoices/{id}": {
       "get": {
         "deprecated": false,
-        "description": "Find one boosters record",
+        "description": "Find one invoices record",
         "responses": {
           "200": {
-            "description": "Retrieve boosters document(s)",
+            "description": "Retrieve invoices document(s)",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/Boosters"
+                  "$ref": "#/components/schemas/Invoices"
                 }
               }
             }
@@ -359,7 +359,7 @@
         },
         "summary": "",
         "tags": [
-          "Boosters"
+          "Invoices"
         ],
         "parameters": [
           {
@@ -376,14 +376,14 @@
       },
       "put": {
         "deprecated": false,
-        "description": "Update a single boosters record",
+        "description": "Update a single invoices record",
         "responses": {
           "200": {
-            "description": "Retrieve boosters document(s)",
+            "description": "Retrieve invoices document(s)",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/Boosters"
+                  "$ref": "#/components/schemas/Invoices"
                 }
               }
             }
@@ -421,7 +421,7 @@
         },
         "summary": "",
         "tags": [
-          "Boosters"
+          "Invoices"
         ],
         "requestBody": {
           "description": "",
@@ -429,7 +429,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/NewBoosters"
+                "$ref": "#/components/schemas/NewInvoices"
               }
             }
           }
@@ -449,10 +449,10 @@
       },
       "delete": {
         "deprecated": false,
-        "description": "Delete a single boosters record",
+        "description": "Delete a single invoices record",
         "responses": {
           "200": {
-            "description": "deletes a single boosters based on the ID supplied",
+            "description": "deletes a single invoices based on the ID supplied",
             "content": {
               "application/json": {
                 "schema": {
@@ -495,7 +495,7 @@
         },
         "summary": "",
         "tags": [
-          "Boosters"
+          "Invoices"
         ],
         "parameters": [
           {
@@ -510,82 +510,11 @@
           }
         ]
       }
-    },
-    "/boosters/buy": {
-      "post": {
-        "deprecated": false,
-        "description": "Create a new boosters record",
-        "responses": {
-          "200": {
-            "description": "Retrieve boosters document(s)",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "properties": {
-                    "foo": {
-                      "type": "string"
-                    }
-                  }
-                }
-              }
-            }
-          },
-          "403": {
-            "description": "Forbidden",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Error"
-                }
-              }
-            }
-          },
-          "404": {
-            "description": "Not found",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Error"
-                }
-              }
-            }
-          },
-          "default": {
-            "description": "unexpected error",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Error"
-                }
-              }
-            }
-          }
-        },
-        "summary": "",
-        "tags": [
-          "Boosters"
-        ],
-        "requestBody": {
-          "description": "",
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "properties": {
-                  "foo": {
-                    "type": "string"
-                  }
-                }
-              }
-            }
-          }
-        }
-      }
     }
   },
   "components": {
     "schemas": {
-      "Boosters": {
+      "Invoices": {
         "required": [
           "id"
         ],
@@ -593,24 +522,97 @@
           "id": {
             "type": "string"
           },
-          "reward": {
-            "type": "integer"
+          "user": {
+            "required": [
+              "id",
+              "username",
+              "email"
+            ],
+            "properties": {
+              "id": {
+                "type": "string"
+              },
+              "username": {
+                "type": "string"
+              },
+              "email": {
+                "type": "string"
+              },
+              "provider": {
+                "type": "string"
+              },
+              "password": {
+                "type": "string"
+              },
+              "resetPasswordToken": {
+                "type": "string"
+              },
+              "confirmationToken": {
+                "type": "string"
+              },
+              "confirmed": {
+                "type": "boolean"
+              },
+              "blocked": {
+                "type": "boolean"
+              },
+              "role": {
+                "type": "string"
+              },
+              "fullname": {
+                "type": "string"
+              },
+              "bio": {
+                "type": "string"
+              },
+              "tokenVersion": {
+                "type": "integer"
+              },
+              "expiredAt": {
+                "type": "string"
+              },
+              "telegramId": {
+                "type": "integer"
+              },
+              "firstname": {
+                "type": "string"
+              },
+              "lastname": {
+                "type": "string"
+              },
+              "score": {
+                "type": "integer"
+              },
+              "dailyScore": {
+                "type": "integer"
+              },
+              "bestScore": {
+                "type": "integer"
+              },
+              "tasks": {
+                "type": "dynamiczone"
+              },
+              "avatar": {
+                "type": "object"
+              },
+              "boosters": {
+                "type": "dynamiczone"
+              },
+              "invoice": {
+                "type": "string"
+              },
+              "created_by": {
+                "type": "string"
+              },
+              "updated_by": {
+                "type": "string"
+              }
+            }
           },
-          "rounds": {
-            "type": "integer"
-          },
-          "price": {
-            "type": "integer",
-            "default": "0"
-          },
-          "stars": {
-            "type": "integer",
-            "default": "0"
-          },
-          "type": {
+          "tgInvoiceId": {
             "type": "uid"
           },
-          "invoice": {
+          "booster": {
             "required": [
               "id"
             ],
@@ -618,13 +620,22 @@
               "id": {
                 "type": "string"
               },
-              "user": {
-                "type": "string"
+              "reward": {
+                "type": "integer"
               },
-              "tgInvoiceId": {
+              "rounds": {
+                "type": "integer"
+              },
+              "price": {
+                "type": "integer"
+              },
+              "stars": {
+                "type": "integer"
+              },
+              "type": {
                 "type": "uid"
               },
-              "booster": {
+              "invoice": {
                 "type": "string"
               },
               "published_at": {
@@ -644,26 +655,15 @@
           }
         }
       },
-      "NewBoosters": {
+      "NewInvoices": {
         "properties": {
-          "reward": {
-            "type": "integer"
+          "user": {
+            "type": "string"
           },
-          "rounds": {
-            "type": "integer"
-          },
-          "price": {
-            "type": "integer",
-            "default": "0"
-          },
-          "stars": {
-            "type": "integer",
-            "default": "0"
-          },
-          "type": {
+          "tgInvoiceId": {
             "type": "uid"
           },
-          "invoice": {
+          "booster": {
             "type": "string"
           },
           "published_at": {
@@ -682,7 +682,7 @@
   },
   "tags": [
     {
-      "name": "Boosters"
+      "name": "Invoices"
     }
   ]
 }
