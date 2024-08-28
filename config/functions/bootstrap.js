@@ -10,9 +10,9 @@
  * See more details here: https://strapi.io/documentation/developer-docs/latest/setup-deployment-guides/configurations.html#bootstrap
  */
 
-const { Telegraf, Markup } = require('telegraf');
+const { Bot, InlineKeyboard } = require('grammy');
 
-const bot = new Telegraf(process.env.TELEGRAM_BOT_KEY);
+const bot = new Bot(process.env.TELEGRAM_BOT_KEY);
 
 function createWelcomeMessage(ctx) {
   return (
@@ -22,19 +22,10 @@ function createWelcomeMessage(ctx) {
   );
 }
 
-async function createInvoice(ctx) {
-  const user = await strapi.query('user', 'users-permissions').findOne({ telegramId: ctx.from.id });
-  if (user) {
-    try {
-      await strapi.query('invoices').create({
-        user: user.id,
-        tgInvoiceId: ctx.message.successful_payment.telegram_payment_charge_id
-      });
-    } catch (error) {
-      console.error(error);
-    }
-  }
-}
+const keyboard = new InlineKeyboard()
+  .webApp('Start Game', 'https://get-info-about.me/')
+  .row()
+  .url('Join the community', 'https://t.me/box_stacker_community');
 
 module.exports = () => {
   bot.on('pre_checkout_query', (ctx) => {
@@ -44,23 +35,34 @@ module.exports = () => {
   });
   
   // Create invoice
-  bot.on('message', async (ctx) => {
-    if (ctx.update.message.successful_payment) {
-      createInvoice(ctx);
+  bot.on('message:successful_payment', async (ctx) => {
+    if (!ctx.message || !ctx.message.successful_payment || !ctx.from) {
+      return;
+    }
+    const user = await strapi.query('user', 'users-permissions').findOne({ telegramId: ctx.from.id });
+    if (user) {
+      try {
+        await strapi.query('invoices').create({
+          user: user.id,
+          tgInvoiceId: ctx.message.successful_payment.telegram_payment_charge_id
+        });
+      } catch (error) {
+        console.error(error);
+      }
     }
   });
 
-  bot.start((ctx) => {
-    ctx.replyWithHTML(
+  bot.command('start', (ctx) => {
+    ctx.reply(
       createWelcomeMessage(ctx),
-      Markup.inlineKeyboard([
-        [Markup.button.webApp('Start Game', 'https://get-info-about.me/')],
-        [Markup.button.url('Join the community', 'https://t.me/box_stacker_community')],
-      ]),
+      {
+        reply_markup: keyboard,
+        parse_mode: 'HTML'
+      }
     );
   });
 
-  bot.launch();
+  bot.start();
 
   console.log('Bot start successfully');
 
