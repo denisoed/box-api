@@ -1342,6 +1342,31 @@
                 }
               ]
             }
+          },
+          "invoice": {
+            "required": [
+              "id"
+            ],
+            "properties": {
+              "id": {
+                "type": "string"
+              },
+              "user": {
+                "type": "string"
+              },
+              "tgInvoiceId": {
+                "type": "uid"
+              },
+              "published_at": {
+                "type": "string"
+              },
+              "created_by": {
+                "type": "string"
+              },
+              "updated_by": {
+                "type": "string"
+              }
+            }
           }
         }
       },
@@ -1479,6 +1504,9 @@
                 }
               ]
             }
+          },
+          "invoice": {
+            "type": "string"
           },
           "created_by": {
             "type": "string"
