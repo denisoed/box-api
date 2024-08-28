@@ -27,7 +27,7 @@ module.exports = {
     const formattedBoosters = await Promise.all(
       boosters.map(async (b) => ({
         ...b,
-        invoiceLink: b.stars ? await bot.api.createInvoiceLink(
+        invoiceLink: b?.stars > 0 ? await bot.api.createInvoiceLink(
           `x${b.reward} for ${b.rounds} rounds`,
           `This booster multiplies earned points by ${b.reward} for ${b.rounds} of rounds after purchase`,
           '{}',
