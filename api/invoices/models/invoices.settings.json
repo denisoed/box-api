@@ -19,10 +19,6 @@
     },
     "tgInvoiceId": {
       "type": "uid"
-    },
-    "booster": {
-      "model": "boosters",
-      "via": "invoice"
     }
   }
 }

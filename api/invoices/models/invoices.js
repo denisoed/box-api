@@ -14,7 +14,9 @@ module.exports = {
     async afterDelete(event) {
      try {
        const refund = await bot.api.refundStarPayment(event.user.telegramId, event.tgInvoiceId);
-       console.log(refund);
+       if (refund) {
+         console.log('Refund done');
+       }
      } catch (error) {
       console.log(error);
      }

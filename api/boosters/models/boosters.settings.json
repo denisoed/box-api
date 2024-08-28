@@ -28,10 +28,6 @@
     },
     "type": {
       "type": "uid"
-    },
-    "invoice": {
-      "via": "booster",
-      "model": "invoices"
     }
   }
 }

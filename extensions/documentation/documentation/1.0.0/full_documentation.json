@@ -14,7 +14,7 @@
       "name": "Apache 2.0",
       "url": "https://www.apache.org/licenses/LICENSE-2.0.html"
     },
-    "x-generation-date": "08/27/2024 10:13:45 PM"
+    "x-generation-date": "08/28/2024 8:51:40 AM"
   },
   "x-strapi-config": {
     "path": "/documentation",
@@ -3987,34 +3987,6 @@
           "type": {
             "type": "uid"
           },
-          "invoice": {
-            "required": [
-              "id"
-            ],
-            "properties": {
-              "id": {
-                "type": "string"
-              },
-              "user": {
-                "type": "string"
-              },
-              "tgInvoiceId": {
-                "type": "uid"
-              },
-              "booster": {
-                "type": "string"
-              },
-              "published_at": {
-                "type": "string"
-              },
-              "created_by": {
-                "type": "string"
-              },
-              "updated_by": {
-                "type": "string"
-              }
-            }
-          },
           "published_at": {
             "type": "string",
             "format": "date-time"
@@ -4039,9 +4011,6 @@
           },
           "type": {
             "type": "uid"
-          },
-          "invoice": {
-            "type": "string"
           },
           "published_at": {
             "type": "string",
@@ -4221,43 +4190,6 @@
           "tgInvoiceId": {
             "type": "uid"
           },
-          "booster": {
-            "required": [
-              "id"
-            ],
-            "properties": {
-              "id": {
-                "type": "string"
-              },
-              "reward": {
-                "type": "integer"
-              },
-              "rounds": {
-                "type": "integer"
-              },
-              "price": {
-                "type": "integer"
-              },
-              "stars": {
-                "type": "integer"
-              },
-              "type": {
-                "type": "uid"
-              },
-              "invoice": {
-                "type": "string"
-              },
-              "published_at": {
-                "type": "string"
-              },
-              "created_by": {
-                "type": "string"
-              },
-              "updated_by": {
-                "type": "string"
-              }
-            }
-          },
           "published_at": {
             "type": "string",
             "format": "date-time"
@@ -4271,9 +4203,6 @@
           },
           "tgInvoiceId": {
             "type": "uid"
-          },
-          "booster": {
-            "type": "string"
           },
           "published_at": {
             "type": "string",
@@ -4646,9 +4575,6 @@
               },
               "tgInvoiceId": {
                 "type": "uid"
-              },
-              "booster": {
-                "type": "string"
               },
               "published_at": {
                 "type": "string"

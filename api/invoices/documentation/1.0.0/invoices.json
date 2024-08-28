@@ -612,43 +612,6 @@
           "tgInvoiceId": {
             "type": "uid"
           },
-          "booster": {
-            "required": [
-              "id"
-            ],
-            "properties": {
-              "id": {
-                "type": "string"
-              },
-              "reward": {
-                "type": "integer"
-              },
-              "rounds": {
-                "type": "integer"
-              },
-              "price": {
-                "type": "integer"
-              },
-              "stars": {
-                "type": "integer"
-              },
-              "type": {
-                "type": "uid"
-              },
-              "invoice": {
-                "type": "string"
-              },
-              "published_at": {
-                "type": "string"
-              },
-              "created_by": {
-                "type": "string"
-              },
-              "updated_by": {
-                "type": "string"
-              }
-            }
-          },
           "published_at": {
             "type": "string",
             "format": "date-time"
@@ -662,9 +625,6 @@
           },
           "tgInvoiceId": {
             "type": "uid"
-          },
-          "booster": {
-            "type": "string"
           },
           "published_at": {
             "type": "string",

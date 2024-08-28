@@ -10,9 +10,6 @@ const { Bot } = require('grammy');
 
 const bot = new Bot(process.env.TELEGRAM_BOT_KEY);
 
-const payload = '{}';
-const currency = 'XTR';
-
 module.exports = {
   async find(ctx) {
     const user = await strapi.query('user', 'users-permissions').findOne({ id: ctx.state.user.id });
@@ -33,9 +30,9 @@ module.exports = {
         invoiceLink: b.stars ? await bot.api.createInvoiceLink(
           `x${b.reward} for ${b.rounds} rounds`,
           `This booster multiplies earned points by ${b.reward} for ${b.rounds} of rounds after purchase`,
-          payload,
+          '{}',
           '', // Provider token must be empty for Telegram Stars
-          currency,
+          'XTR',
           [{
             amount: b.stars,
             label: `x${b.reward} for ${b.rounds} rounds`,
@@ -85,6 +82,8 @@ module.exports = {
         })
       );
     }
+
+    // Set booster to user
     const newComponentBooster = {
       __component: 'user.boosters',
       type: booster.type,

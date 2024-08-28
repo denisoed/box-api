@@ -1357,9 +1357,6 @@
               "tgInvoiceId": {
                 "type": "uid"
               },
-              "booster": {
-                "type": "string"
-              },
               "published_at": {
                 "type": "string"
               },

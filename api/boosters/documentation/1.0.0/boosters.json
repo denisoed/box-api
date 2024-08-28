@@ -610,34 +610,6 @@
           "type": {
             "type": "uid"
           },
-          "invoice": {
-            "required": [
-              "id"
-            ],
-            "properties": {
-              "id": {
-                "type": "string"
-              },
-              "user": {
-                "type": "string"
-              },
-              "tgInvoiceId": {
-                "type": "uid"
-              },
-              "booster": {
-                "type": "string"
-              },
-              "published_at": {
-                "type": "string"
-              },
-              "created_by": {
-                "type": "string"
-              },
-              "updated_by": {
-                "type": "string"
-              }
-            }
-          },
           "published_at": {
             "type": "string",
             "format": "date-time"
@@ -662,9 +634,6 @@
           },
           "type": {
             "type": "uid"
-          },
-          "invoice": {
-            "type": "string"
           },
           "published_at": {
             "type": "string",
