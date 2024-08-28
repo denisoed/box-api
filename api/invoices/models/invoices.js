@@ -13,7 +13,7 @@ module.exports = {
   lifecycles: {
     async afterDelete(event) {
      try {
-       const refund = await bot.api.refundStarPayment(event.user.telegramId, event.tgInvoiceId);
+       const refund = await bot.api.refundStarPayment(event.tgUserId, event.tgInvoiceId);
        if (refund) {
          console.log('Refund done');
        }

@@ -109,10 +109,6 @@
       "components": [
         "user.boosters"
       ]
-    },
-    "invoice": {
-      "via": "user",
-      "model": "invoices"
     }
   }
 }

@@ -522,95 +522,11 @@
           "id": {
             "type": "string"
           },
-          "user": {
-            "required": [
-              "id",
-              "username",
-              "email"
-            ],
-            "properties": {
-              "id": {
-                "type": "string"
-              },
-              "username": {
-                "type": "string"
-              },
-              "email": {
-                "type": "string"
-              },
-              "provider": {
-                "type": "string"
-              },
-              "password": {
-                "type": "string"
-              },
-              "resetPasswordToken": {
-                "type": "string"
-              },
-              "confirmationToken": {
-                "type": "string"
-              },
-              "confirmed": {
-                "type": "boolean"
-              },
-              "blocked": {
-                "type": "boolean"
-              },
-              "role": {
-                "type": "string"
-              },
-              "fullname": {
-                "type": "string"
-              },
-              "bio": {
-                "type": "string"
-              },
-              "tokenVersion": {
-                "type": "integer"
-              },
-              "expiredAt": {
-                "type": "string"
-              },
-              "telegramId": {
-                "type": "integer"
-              },
-              "firstname": {
-                "type": "string"
-              },
-              "lastname": {
-                "type": "string"
-              },
-              "score": {
-                "type": "integer"
-              },
-              "dailyScore": {
-                "type": "integer"
-              },
-              "bestScore": {
-                "type": "integer"
-              },
-              "tasks": {
-                "type": "dynamiczone"
-              },
-              "avatar": {
-                "type": "object"
-              },
-              "boosters": {
-                "type": "dynamiczone"
-              },
-              "invoice": {
-                "type": "string"
-              },
-              "created_by": {
-                "type": "string"
-              },
-              "updated_by": {
-                "type": "string"
-              }
-            }
-          },
           "tgInvoiceId": {
             "type": "uid"
+          },
+          "tgUserId": {
+            "type": "string"
           },
           "published_at": {
             "type": "string",
@@ -620,11 +536,11 @@
       },
       "NewInvoices": {
         "properties": {
-          "user": {
-            "type": "string"
-          },
           "tgInvoiceId": {
             "type": "uid"
+          },
+          "tgUserId": {
+            "type": "string"
           },
           "published_at": {
             "type": "string",

@@ -600,9 +600,6 @@
                 "boosters": {
                   "type": "dynamiczone"
                 },
-                "invoice": {
-                  "type": "string"
-                },
                 "created_by": {
                   "type": "string"
                 },

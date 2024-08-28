@@ -12,13 +12,11 @@
   },
   "pluginOptions": {},
   "attributes": {
-    "user": {
-      "plugin": "users-permissions",
-      "model": "user",
-      "via": "invoice"
-    },
     "tgInvoiceId": {
       "type": "uid"
+    },
+    "tgUserId": {
+      "type": "string"
     }
   }
 }

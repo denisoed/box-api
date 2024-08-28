@@ -39,16 +39,13 @@ module.exports = () => {
     if (!ctx.message || !ctx.message.successful_payment || !ctx.from) {
       return;
     }
-    const user = await strapi.query('user', 'users-permissions').findOne({ telegramId: ctx.from.id });
-    if (user) {
-      try {
-        await strapi.query('invoices').create({
-          user: user.id,
-          tgInvoiceId: ctx.message.successful_payment.telegram_payment_charge_id
-        });
-      } catch (error) {
-        console.error(error);
-      }
+    try {
+      await strapi.query('invoices').create({
+        tgUserId: ctx.from.id,
+        tgInvoiceId: ctx.message.successful_payment.telegram_payment_charge_id
+      });
+    } catch (error) {
+      console.error(error);
     }
   });
 
