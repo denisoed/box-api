@@ -90,7 +90,9 @@ module.exports = {
       roundsLeft: booster.rounds,
       reward: booster.reward
     };
-    user.score = user.score - booster.price;
+    if (!booster?.stars) {
+      user.score = user.score - booster.price;
+    }
     user.boosters = [...user.boosters, newComponentBooster];
     await strapi
       .query('user', 'users-permissions')
