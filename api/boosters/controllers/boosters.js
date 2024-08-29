@@ -90,8 +90,8 @@ module.exports = {
       roundsLeft: booster.rounds,
       reward: booster.reward
     };
-    if (!booster?.stars) {
-      user.score = user.score - booster.price;
+    if (!+booster?.stars) {
+      user.score = +(user?.score || 0) - +(booster?.price || 0);
     }
     user.boosters = [...user.boosters, newComponentBooster];
     await strapi
