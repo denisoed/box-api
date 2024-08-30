@@ -26,7 +26,7 @@ function createRoadmapMessage() {
   return (
     '🚧 Roadmap 🚧 \n\n' +
     '<b>1. Launch of the Beta Version</b>\n\n' +
-    '- <s>Testing and optimizing the core game mechanics (tower building, point accumulation).</s>\n\n' +
+    '👉 <u>Testing and optimizing the core game mechanics (tower building, point accumulation).</u>\n\n' +
     '- Collecting user feedback to improve the gameplay experience.\n\n' +
     '<b>2. Integration of the In-Game Currency ("BoxCoin")</b>\n\n' +
     '- Introduction of tokens that can be earned in the game.\n\n' +
