@@ -206,5 +206,63 @@ module.exports = {
       .query("user", "users-permissions")
       .update({ id: user.id }, user);
     return ctx.send({ success: true, score: user.score });
+  },
+  async checkDailyReward(ctx) {
+    const today = new Date();
+    const DEFAULT_DAILY_REWARD = 200;
+
+    const user = await strapi
+      .query("user", "users-permissions")
+      .findOne({ id: ctx.state.user.id }, []);
+    
+    if (!user) {
+      return ctx.badRequest(
+        null,
+        formatError({
+          id: "Auth.form.error.user.notFound",
+          message: "User not found",
+        })
+      );
+    }
+
+    const dailyRewardNextDate = user?.dailyRewardNext ? new Date(user.dailyRewardNext) : null;
+ 
+    if (!dailyRewardNextDate || dailyRewardNextDate.getDate() === today.getDate()) {
+      return ctx.send({ success: true, reward: user?.dailyReward || DEFAULT_DAILY_REWARD });
+    } else {
+      return ctx.send({ success: false, reward: 0 });
+    }
+  },
+  async collectDailyReward(ctx) {
+    const today = new Date();
+    const DEFAULT_DAILY_REWARD = 200;
+
+    const user = await strapi
+      .query("user", "users-permissions")
+      .findOne({ id: ctx.state.user.id }, []);
+    
+    if (!user) {
+      return ctx.badRequest(
+        null,
+        formatError({
+          id: "Auth.form.error.user.notFound",
+          message: "User not found",
+        })
+      );
+    }
+
+    const dailyRewardNextDate = user?.dailyRewardNext ? new Date(user.dailyRewardNext) : null;
+ 
+    if (!dailyRewardNextDate || dailyRewardNextDate.getDate() === today.getDate()) {
+      const nextDay = today.setDate(today.getDate() + 1);
+      user.dailyRewardNext = new Date(nextDay);
+      user.score = +user?.score + +(user?.dailyReward || DEFAULT_DAILY_REWARD);
+      await strapi
+        .query("user", "users-permissions")
+        .update({ id: user.id }, user);
+      return ctx.send({ success: true, reward: user?.dailyReward || DEFAULT_DAILY_REWARD });
+    } else {
+      return ctx.send({ success: false, reward: 0 });
+    }
   }
 };

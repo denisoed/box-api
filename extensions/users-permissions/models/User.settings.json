@@ -109,6 +109,13 @@
       "components": [
         "user.boosters"
       ]
+    },
+    "dailyReward": {
+      "type": "biginteger",
+      "default": "200"
+    },
+    "dailyRewardNext": {
+      "type": "date"
     }
   }
 }

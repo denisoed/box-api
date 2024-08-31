@@ -14,7 +14,7 @@
       "name": "Apache 2.0",
       "url": "https://www.apache.org/licenses/LICENSE-2.0.html"
     },
-    "x-generation-date": "08/28/2024 7:53:31 PM"
+    "x-generation-date": "08/31/2024 4:00:24 PM"
   },
   "x-strapi-config": {
     "path": "/documentation",
@@ -4270,6 +4270,12 @@
                 "boosters": {
                   "type": "dynamiczone"
                 },
+                "dailyReward": {
+                  "type": "integer"
+                },
+                "dailyRewardNext": {
+                  "type": "string"
+                },
                 "created_by": {
                   "type": "string"
                 },
@@ -4474,6 +4480,14 @@
                 }
               ]
             }
+          },
+          "dailyReward": {
+            "type": "integer",
+            "default": "200"
+          },
+          "dailyRewardNext": {
+            "type": "string",
+            "format": "date"
           }
         }
       },
@@ -4611,6 +4625,14 @@
                 }
               ]
             }
+          },
+          "dailyReward": {
+            "type": "integer",
+            "default": "200"
+          },
+          "dailyRewardNext": {
+            "type": "string",
+            "format": "date"
           },
           "created_by": {
             "type": "string"

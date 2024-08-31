@@ -25,13 +25,39 @@ module.exports = {
     type UserScore {
       success: Boolean!
       score: Int!
+    },
+
+    type UserDailyReward {
+      success: Boolean!
+      reward: Int!
     }
+  `,
+  query: `
+    checkDailyReward: UserDailyReward!
   `,
   mutation: `
     telegram(initDataUnsafe: String!): UsersPermissionsAuthResponse!,
-    updateScore(score: Int!): UserScore!
+    updateScore(score: Int!): UserScore!,
+    collectDailyReward: UserDailyReward!
   `,
   resolver: {
+    Query: {
+      checkDailyReward: {
+        description: "Check Daily Reward",
+        resolverOf: "plugins::users-permissions.auth.checkDailyReward",
+        resolver: async (obj, options, { context }) => {
+          context.query = _.toPlainObject(options);
+          await strapi.plugins[
+            "users-permissions"
+          ].controllers.auth.checkDailyReward(context);
+          let output = context.body.toJSON
+            ? context.body.toJSON()
+            : context.body;
+          checkBadRequest(output);
+          return output;
+        },
+      },
+    },
     Mutation: {
       telegram: {
         description: "Telegram Auth",
@@ -60,6 +86,22 @@ module.exports = {
           await strapi.plugins[
             "users-permissions"
           ].controllers.auth.updateScore(context);
+          let output = context.body.toJSON
+            ? context.body.toJSON()
+            : context.body;
+          checkBadRequest(output);
+          return output;
+        },
+      },
+
+      collectDailyReward: {
+        description: "Collect Daily Reward",
+        resolverOf: "plugins::users-permissions.auth.collectDailyReward",
+        resolver: async (obj, options, { context }) => {
+          context.query = _.toPlainObject(options);
+          await strapi.plugins[
+            "users-permissions"
+          ].controllers.auth.collectDailyReward(context);
           let output = context.body.toJSON
             ? context.body.toJSON()
             : context.body;

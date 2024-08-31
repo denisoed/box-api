@@ -1342,6 +1342,14 @@
                 }
               ]
             }
+          },
+          "dailyReward": {
+            "type": "integer",
+            "default": "200"
+          },
+          "dailyRewardNext": {
+            "type": "string",
+            "format": "date"
           }
         }
       },
@@ -1479,6 +1487,14 @@
                 }
               ]
             }
+          },
+          "dailyReward": {
+            "type": "integer",
+            "default": "200"
+          },
+          "dailyRewardNext": {
+            "type": "string",
+            "format": "date"
           },
           "created_by": {
             "type": "string"

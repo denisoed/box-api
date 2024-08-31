@@ -600,6 +600,12 @@
                 "boosters": {
                   "type": "dynamiczone"
                 },
+                "dailyReward": {
+                  "type": "integer"
+                },
+                "dailyRewardNext": {
+                  "type": "string"
+                },
                 "created_by": {
                   "type": "string"
                 },
