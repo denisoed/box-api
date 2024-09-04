@@ -96,6 +96,7 @@ module.exports = () => {
     ctx.reply(
       createRoadmapMessage(),
       {
+        reply_markup: keyboard,
         parse_mode: 'HTML'
       }
     );
