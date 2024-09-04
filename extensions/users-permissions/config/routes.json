@@ -14,7 +14,9 @@
       "path": "/user/updateScore",
       "handler": "Auth.updateScore",
       "config": {
-        "policies": [],
+        "policies": [
+          "is-valid"
+        ],
         "prefix": ""
       }
     },
