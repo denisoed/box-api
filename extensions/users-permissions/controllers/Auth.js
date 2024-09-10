@@ -20,6 +20,8 @@ const formatError = (error) => [
   { messages: [{ id: error.id, message: error.message, field: error.field }] },
 ];
 
+const CLAIM_REWARD = 500;
+
 function getCurrentDatePlus8Hours() {
   const currentDate = new Date();
   currentDate.setHours(currentDate.getHours() + 8);
@@ -296,9 +298,9 @@ module.exports = {
       )
     }
 
-    // Plus 8 hours
-    const nextClaim = getCurrentDatePlus8Hours();
-    user.claimUntil = nextClaim;
+    user.claimUntil = getCurrentDatePlus8Hours();
+    user.score = +user?.score + CLAIM_REWARD;
+
     await strapi
       .query('user', 'users-permissions')
       .update({ id: user.id }, user);
