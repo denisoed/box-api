@@ -31,6 +31,10 @@ module.exports = {
       success: Boolean!
       reward: Int!
     }
+
+    type UserClaim {
+      success: Boolean!
+    }
   `,
   query: `
     checkDailyReward: UserDailyReward!
@@ -38,7 +42,8 @@ module.exports = {
   mutation: `
     telegram(initDataUnsafe: String!): UsersPermissionsAuthResponse!,
     updateScore(score: Int!): UserScore!,
-    collectDailyReward: UserDailyReward!
+    collectDailyReward: UserDailyReward!,
+    claim: UserClaim!
   `,
   resolver: {
     Query: {
@@ -102,6 +107,22 @@ module.exports = {
           await strapi.plugins[
             "users-permissions"
           ].controllers.auth.collectDailyReward(context);
+          let output = context.body.toJSON
+            ? context.body.toJSON()
+            : context.body;
+          checkBadRequest(output);
+          return output;
+        },
+      },
+
+      claim: {
+        description: "Claim",
+        resolverOf: "plugins::users-permissions.auth.claim",
+        resolver: async (obj, options, { context }) => {
+          context.query = _.toPlainObject(options);
+          await strapi.plugins[
+            "users-permissions"
+          ].controllers.auth.claim(context);
           let output = context.body.toJSON
             ? context.body.toJSON()
             : context.body;

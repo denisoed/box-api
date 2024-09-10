@@ -1350,6 +1350,10 @@
           "dailyRewardNext": {
             "type": "string",
             "format": "date"
+          },
+          "claimUntil": {
+            "type": "string",
+            "format": "date-time"
           }
         }
       },
@@ -1495,6 +1499,10 @@
           "dailyRewardNext": {
             "type": "string",
             "format": "date"
+          },
+          "claimUntil": {
+            "type": "string",
+            "format": "date-time"
           },
           "created_by": {
             "type": "string"

@@ -606,6 +606,9 @@
                 "dailyRewardNext": {
                   "type": "string"
                 },
+                "claimUntil": {
+                  "type": "string"
+                },
                 "created_by": {
                   "type": "string"
                 },

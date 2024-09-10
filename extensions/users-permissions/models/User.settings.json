@@ -116,6 +116,9 @@
     },
     "dailyRewardNext": {
       "type": "date"
+    },
+    "claimUntil": {
+      "type": "datetime"
     }
   }
 }

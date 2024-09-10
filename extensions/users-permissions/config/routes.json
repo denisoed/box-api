@@ -37,6 +37,15 @@
         "policies": [],
         "prefix": ""
       }
+    },
+    {
+      "method": "POST",
+      "path": "/user/claim",
+      "handler": "Auth.claim",
+      "config": {
+        "policies": [],
+        "prefix": ""
+      }
     }
   ]
 }
