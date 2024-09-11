@@ -97,6 +97,6 @@ module.exports = {
     await strapi
       .query('user', 'users-permissions')
       .update({ id: user.id }, user);
-    return ctx.send({ success: true, data: booster });
+    return ctx.send({ success: true, user });
   },
 };

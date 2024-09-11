@@ -31,14 +31,25 @@ module.exports = {
       success: Boolean!
       reward: Int!
     }
+
+    type UserClaim {
+      success: Boolean!
+    }
+
+    type UserCheckClaim {
+      success: Boolean!
+      claimUntil: String
+    }
   `,
   query: `
     checkDailyReward: UserDailyReward!
+    checkClaim: UserCheckClaim!
   `,
   mutation: `
     telegram(initDataUnsafe: String!): UsersPermissionsAuthResponse!,
     updateScore(score: Int!): UserScore!,
-    collectDailyReward: UserDailyReward!
+    collectDailyReward: UserDailyReward!,
+    claim: UserClaim!
   `,
   resolver: {
     Query: {
@@ -50,6 +61,21 @@ module.exports = {
           await strapi.plugins[
             "users-permissions"
           ].controllers.auth.checkDailyReward(context);
+          let output = context.body.toJSON
+            ? context.body.toJSON()
+            : context.body;
+          checkBadRequest(output);
+          return output;
+        },
+      },
+      checkClaim: {
+        description: "Check Claim",
+        resolverOf: "plugins::users-permissions.auth.checkClaim",
+        resolver: async (obj, options, { context }) => {
+          context.query = _.toPlainObject(options);
+          await strapi.plugins[
+            "users-permissions"
+          ].controllers.auth.checkClaim(context);
           let output = context.body.toJSON
             ? context.body.toJSON()
             : context.body;
@@ -102,6 +128,22 @@ module.exports = {
           await strapi.plugins[
             "users-permissions"
           ].controllers.auth.collectDailyReward(context);
+          let output = context.body.toJSON
+            ? context.body.toJSON()
+            : context.body;
+          checkBadRequest(output);
+          return output;
+        },
+      },
+
+      claim: {
+        description: "Claim",
+        resolverOf: "plugins::users-permissions.auth.claim",
+        resolver: async (obj, options, { context }) => {
+          context.query = _.toPlainObject(options);
+          await strapi.plugins[
+            "users-permissions"
+          ].controllers.auth.claim(context);
           let output = context.body.toJSON
             ? context.body.toJSON()
             : context.body;
