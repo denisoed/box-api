@@ -1,3 +1,3 @@
 # Box back
 
-Backend for box
+Backend for box stacker
