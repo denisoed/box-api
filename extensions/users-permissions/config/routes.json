@@ -30,6 +30,15 @@
       }
     },
     {
+      "method": "GET",
+      "path": "/user/checkClaim",
+      "handler": "Auth.checkClaim",
+      "config": {
+        "policies": [],
+        "prefix": ""
+      }
+    },
+    {
       "method": "POST",
       "path": "/user/collectDailyReward",
       "handler": "Auth.collectDailyReward",

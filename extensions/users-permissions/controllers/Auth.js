@@ -20,7 +20,7 @@ const formatError = (error) => [
   { messages: [{ id: error.id, message: error.message, field: error.field }] },
 ];
 
-const CLAIM_REWARD = 500;
+const COLLECT_REWARD = 500;
 
 function getCurrentDatePlus8Hours() {
   const currentDate = new Date();
@@ -138,10 +138,14 @@ module.exports = {
 
     if (user) {
       const data = generateNewJWT(user);
+      if (user?.claimUntil && new Date(user?.claimUntil) <= new Date()) {
+        user.claimUntil = null
+        await strapi.query("user", "users-permissions").update({ id: user.id }, user);
+      }
       if (checkResetDailyScore(user)) {
         user.tasks = [];
         user.dailyScore = 0;
-        strapi.query("user", "users-permissions").update({ id: user.id }, user);
+        await strapi.query("user", "users-permissions").update({ id: user.id }, user);
       }
       return ctx.send(data);
     }
@@ -273,6 +277,28 @@ module.exports = {
       return ctx.send({ success: false, reward: 0 });
     }
   },
+  async checkClaim(ctx) {
+    const user = await strapi
+      .query("user", "users-permissions")
+      .findOne({ id: ctx.state.user.id }, []);
+    
+    if (!user) {
+      return ctx.badRequest(
+        null,
+        formatError({
+          id: "Auth.form.error.user.notFound",
+          message: "User not found",
+        })
+      );
+    }
+    
+    if (user?.claimUntil && new Date(user?.claimUntil) <= new Date()) {
+      user.claimUntil = null
+      await strapi.query("user", "users-permissions").update({ id: user.id }, user);
+      return ctx.send({ success: false, claimUntil: null });
+    }
+    return ctx.send({ success: true, claimUntil: user?.claimUntil });
+  },
   async claim(ctx) {
     const user = await strapi
       .query("user", "users-permissions")
@@ -299,7 +325,7 @@ module.exports = {
     }
 
     user.claimUntil = getCurrentDatePlus8Hours();
-    user.score = +user?.score + CLAIM_REWARD;
+    user.score = +user?.score + COLLECT_REWARD;
 
     await strapi
       .query('user', 'users-permissions')
