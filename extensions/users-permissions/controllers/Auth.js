@@ -325,7 +325,8 @@ module.exports = {
     }
 
     user.claimUntil = getCurrentDatePlus8Hours();
-    user.score = +user?.score + COLLECT_REWARD;
+    user.dailyScore = +(user?.dailyScore || 0) + COLLECT_REWARD;
+    user.score = +(user?.score || 0) + COLLECT_REWARD;
 
     await strapi
       .query('user', 'users-permissions')
