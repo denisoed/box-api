@@ -239,7 +239,7 @@ module.exports = {
 
     const dailyRewardNextDate = user?.dailyRewardNext ? new Date(user.dailyRewardNext) : null;
  
-    if (!dailyRewardNextDate || dailyRewardNextDate.getDate() === today.getDate()) {
+    if (!dailyRewardNextDate || dailyRewardNextDate.getDate() <= today.getDate()) {
       return ctx.send({ success: true, reward: user?.dailyReward || DEFAULT_DAILY_REWARD });
     } else {
       return ctx.send({ success: false, reward: 0 });
