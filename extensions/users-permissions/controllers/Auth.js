@@ -265,7 +265,7 @@ module.exports = {
 
     const dailyRewardNextDate = user?.dailyRewardNext ? new Date(user.dailyRewardNext) : null;
  
-    if (!dailyRewardNextDate || dailyRewardNextDate.getDate() === today.getDate()) {
+    if (!dailyRewardNextDate || dailyRewardNextDate.getDate() <= today.getDate()) {
       const nextDay = today.setDate(today.getDate() + 1);
       user.dailyRewardNext = new Date(nextDay);
       user.score = +user?.score + +(user?.dailyReward || DEFAULT_DAILY_REWARD);
